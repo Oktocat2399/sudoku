@@ -1,0 +1,9 @@
+{
+    "name": "oktocat2399/sudoku",
+    "autoload": {
+        "psr-4": {
+            "oktocat2399\\Sudoku\\": "src/"
+        }
+    },
+    "require": {}
+}
