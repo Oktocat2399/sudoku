@@ -4,16 +4,28 @@ namespace oktocat2399\Sudoku;
 
 class Index
 {
-    public  $a;
-    public  $b;
-    public  $c;
-    public  $d;
-    public  $x1;
-    public  $x2;
-
     public static function main()
     {
-        $data = [
+        $x = null;
+        $y = null;
+        $value = null;
+
+        $argv = $_SERVER['argv'];
+        if (isset($argv[1]) && isset($argv[2]) && isset($argv[3])) {
+            $x = (int)$argv[1];
+            $y = (int)$argv[2];
+            $value = (int)$argv[3];
+        }
+
+        $table = new Table();
+        //$table->load();
+        if ($value !== null) {
+            $table->setValue($x, $y, $value);
+        }
+        $table->print();
+        $table->checkAll();
+        $table->save();
+        /*$data = [
             ['a' => 2, 'b' => 1, 'c' => -9],
             ['a' => 1, 'b' => 2, 'c' => -2],
             ['a' => 1, 'b' => 3, 'c' => -4],
@@ -21,43 +33,19 @@ class Index
             ['a' => 1, 'b' => 1, 'c' => -6],
             ['a' => 1, 'b' => 0, 'c' => -7],
         ];
-        $calculations = [];
+        $calculations = [1,2,3];
+        $calculations = [
+            [1,2,3],
+            [1,2,3],
+            [1,2,3],
+        ];
         foreach ($data as $array) {
-            $calculation = new Index();
-            $calculation->a = $array['a'];
-            $calculation->b = $array['b'];
-            $calculation->c = $array['c'];
+            $calculation = new SolvingQuadraticEquations($array['a'], $array['b'], $array['c']);
             echo "a = {$calculation->a}; b = {$calculation->b}; c = {$calculation->c}; ";
             $calculation->calc();
             echo PHP_EOL;
 
             $calculations[] = $calculation;
-        }
-    }
-
-    public function calc()
-    {
-        $d = $this->d();
-        if ($d < 0) {
-            echo 'X нет';
-        } else {
-            $this->x1 = $this->x();
-            $this->x2 = $this->x(-1);
-            echo "x1 = {$this->x1}; ";
-            echo "x2 = {$this->x2}; ";
-        }
-
-    }
-
-    public function d()
-    {
-        return $this->b * $this->b - 4 * $this->a * $this->c;
-    }
-
-    public function x($sign = 1)
-    {
-        if($this->d === null)
-            $this->d = $this->d();
-        return (-$this->b + sqrt($this->d) * $sign) / (2 * $this->a);
+        }*/
     }
 }
