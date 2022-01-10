@@ -1,6 +1,6 @@
 <?php
 
-namespace oktocat2399\Sudoku;
+namespace oktocat2399\Sudoku\models;
 
 class Table
 {
@@ -67,25 +67,7 @@ class Table
         $this->cells = json_decode($json_string);
     }
 
-    public function print()
-    {
-        foreach ($this->cells as $key => $cell) {
-            if ($cell == null){
-                $cell = ' ';
-            }
 
-            echo " {$cell}";
-            if (($key+1) % self::WIDTH == 0)  {
-                echo PHP_EOL;
-            }
-            if (($key+1) % self::SEPARATION_LIMIT == 0 && ($key+1) % self::WIDTH !== 0){
-                echo '  ';
-            }
-            if (($key+1) % (self::SEPARATION_LIMIT * self::WIDTH) == 0){
-                echo PHP_EOL;
-            }
-        }
-    }
 
     public function getIndex($x, $y)
     {
